@@ -4,4 +4,5 @@ def blog_view(requests):
     return render(requests, 'blog/blog-home.html')
 
 def blog_single(requests):
-    return render(requests, 'blog/blog-single.html')
+    context = {'title':'shiraz uni is closed', 'content':'shiraz city is open but shiraz univrsity is closed unfortunetly'}
+    return render(requests, 'blog/blog-single.html',context)
