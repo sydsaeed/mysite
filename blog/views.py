@@ -1,8 +1,16 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from blog.models import Post
 
 def blog_view(requests):
-    return render(requests, 'blog/blog-home.html')
+    posts = Post.objects.filter(status=1)
+    context = {'posts':posts}
+    return render(requests, 'blog/blog-home.html', context)
 
 def blog_single(requests):
     context = {'title':'shiraz uni is closed', 'content':'shiraz city is open but shiraz univrsity is closed unfortunetly'}
     return render(requests, 'blog/blog-single.html',context)
+
+def test(requests,pid):
+    post = get_object_or_404(Post,pk=pid)
+    context = {'post':post}
+    return render(requests,'blog/test.html',context)
