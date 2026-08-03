@@ -6,8 +6,9 @@ def blog_view(requests):
     context = {'posts':posts}
     return render(requests, 'blog/blog-home.html', context)
 
-def blog_single(requests):
-    context = {'title':'shiraz uni is closed', 'content':'shiraz city is open but shiraz univrsity is closed unfortunetly'}
+def blog_single(requests,pid):
+    post = get_object_or_404(Post,pk=pid, status=1)
+    context = {'post':post}
     return render(requests, 'blog/blog-single.html',context)
 
 def test(requests,pid):
